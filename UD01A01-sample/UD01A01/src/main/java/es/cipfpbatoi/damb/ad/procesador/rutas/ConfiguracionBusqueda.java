@@ -1,9 +1,5 @@
 package es.cipfpbatoi.damb.ad.procesador.rutas;
 
-import java.io.File;
-import java.io.FileFilter;
-
-
 public class ConfiguracionBusqueda {
 	
 	private String rutaInicial;
@@ -52,41 +48,5 @@ public class ConfiguracionBusqueda {
 		this.mostrarArchivosOcultos = mostrarArchivosOcultos;
 	}
 	
-	public boolean checkDirectorio(String ruta) {
-		
-		File archivo = new File (ruta);
-		
-		boolean esCarpeta;
-		
-			if (!archivo.exists() && !archivo.isDirectory()) {
-				
-				esCarpeta = false;
-				return esCarpeta;
-				
-			}else {
-				esCarpeta = true;
-				return esCarpeta;
-			}
-		
-	}
-	
-	public File[] listaArchivos (String ruta) {
-		
-		File archivo = new File (ruta);
-		
-			FileFilter filtroArchivo = new FileFilter(){
-				
-				public boolean accept (File file){
-					if (file.exists()) {	
-						return true;
-					}
-					return false;
-				}		
-			};
-		
-		File[] archivos = archivo.listFiles(filtroArchivo);
-		
-		return archivos;
-	}
 }	
 

@@ -17,14 +17,17 @@ public class ProcesadorRutas {
 
 			if (configuracionBusqueda.isBuscarRecursivamente()) {
 
+				resultadoProceso.append("Buscando recursivamente . \n");
+				
 				File[] carpetas = getDirectorios(rutaInicial);
-
+				
 				for (File carpeta : carpetas) {
-
-					resultadoProceso.append("Directorio: " + carpeta.getName() + ". \n");
 					
-					getDirectorios(carpeta.getAbsolutePath());
+					resultadoProceso.append("Directorio: " + carpeta.getName() + ", ubicado en" + carpeta.getPath()+ ". \n");
+					
+					getDirectorios(carpeta.getPath());
 				}
+
 
 			} else {
 
@@ -72,20 +75,23 @@ public class ProcesadorRutas {
 	public static File[] getDirectorios(String ruta) {
 
 		File carpeta = new File(ruta);
-		FileFilter listadoCarpetas = new FileFilter() {
+		
+			
+			FileFilter listadoCarpetas = new FileFilter() {
 
-			public boolean accept(File carpeta) {
-				if (carpeta.exists() && carpeta.isDirectory()) {
+				public boolean accept(File carpeta) {
 
-					return true;
+						if (carpeta.exists() && carpeta.isDirectory()) {
+
+							getDirectorios(carpeta.getPath());
+							return true;
+						}
+						return false;	
 				}
-				return false;
-			}
 
-		};
+			};
 
 		File[] carpetas = carpeta.listFiles(listadoCarpetas);
-
 		return carpetas;
 	}
 
