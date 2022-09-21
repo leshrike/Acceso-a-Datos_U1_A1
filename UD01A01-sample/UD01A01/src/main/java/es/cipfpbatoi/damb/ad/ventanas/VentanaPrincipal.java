@@ -30,6 +30,8 @@ public class VentanaPrincipal {
 	
 	private TextField textFieldFiltroNombre;
 	
+	private TextField textFieldCopiarDirectorio;
+	
 	private Button buttonProcesarRuta;
 	private TextArea textAreaFicherosEncontrados;
 	
@@ -105,6 +107,17 @@ public class VentanaPrincipal {
 		
 		this.textFieldFiltroNombre.setPrefWidth(350);
 		
+		HBox contenedorCopia = new HBox();
+		this.contenedorPrincipal.getChildren().add(contenedorCopia);
+		
+		Label label_copy = new Label("Directorio a copiar: ");
+		contenedorCopia.getChildren().add(label_copy);
+		
+		this.textFieldCopiarDirectorio = new TextField();
+		contenedorCopia.getChildren().add(this.textFieldCopiarDirectorio);
+		
+		this.textFieldCopiarDirectorio.setPrefWidth(350);
+		
 		this.buttonProcesarRuta = new Button("Buscar ficheros");
 		this.contenedorPrincipal.getChildren().add(this.buttonProcesarRuta);
 		
@@ -138,9 +151,14 @@ public class VentanaPrincipal {
 		configuracionBusqueda.setFiltroNombre(this.textFieldFiltroNombre.getText());
 		configuracionBusqueda.setBuscarRecursivamente(this.checkBuscarRecursivamente.isSelected());
 		configuracionBusqueda.setMostrarArchivosOcultos(this.checkMostrarArchivosOcultos.isSelected());
+		configuracionBusqueda.setCopiarDirectorio(this.textFieldCopiarDirectorio.getText());
 		
 		StringBuilder resultadoProceso = ProcesadorRutas.procesarRuta(configuracionBusqueda);
 		
 		this.textAreaFicherosEncontrados.appendText(resultadoProceso.toString());
+	}
+	
+	private void onClickButtonCopiarDirectorio(){
+		
 	}
 }

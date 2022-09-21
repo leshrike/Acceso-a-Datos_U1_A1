@@ -4,6 +4,7 @@ public class ConfiguracionBusqueda {
 	
 	private String rutaInicial;
 	private String filtroNombre;
+	private String copiarDirectorio;
 	
 	private boolean buscarRecursivamente;
 	private boolean mostrarArchivosOcultos;
@@ -46,6 +47,14 @@ public class ConfiguracionBusqueda {
 	}
 	public void setMostrarArchivosOcultos(boolean mostrarArchivosOcultos) {
 		this.mostrarArchivosOcultos = mostrarArchivosOcultos;
+	}
+	
+	// copia de archivos
+	public String getCopiarDirectorio() {
+		return this.copiarDirectorio;
+	}
+	public void setCopiarDirectorio(String copiarDirectorio) {
+		this.copiarDirectorio = copiarDirectorio;
 	}
 	
 }	
